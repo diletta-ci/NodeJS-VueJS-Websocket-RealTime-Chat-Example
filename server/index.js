@@ -14,7 +14,7 @@ app.use(express.static('public'));
 var io = socket(server);
 
 io.on('connection', function(socket) {
-    console.log('Socket connected', socket.id);
+    console.log('Socket connected. Connection id:', socket.id);
     // Receiving the data from client
     socket.on('chat', function(data) {
         // Emit data to client
