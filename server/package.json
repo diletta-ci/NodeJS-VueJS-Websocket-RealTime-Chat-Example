@@ -1,0 +1,16 @@
+{
+  "name": "nodejs-vuejs-websocket-server",
+  "version": "1.0.0",
+  "description": "Server with Websocket connection",
+  "main": "server.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node server.js"
+  },
+  "author": "Giodi CI Dev",
+  "license": "ISC",
+  "dependencies": {
+    "http": "0.0.1-security",
+    "socket.io": "^2.3.0"
+  }
+}
