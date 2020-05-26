@@ -30,6 +30,7 @@
                     </div>
                 </div>
             </div>
+            <div class="feedback">{{ feedback }}</div>
         </div>
 
         <div class="chat-window">
@@ -44,6 +45,7 @@
                 name="message"
                 id="message"
                 v-model="message"
+                @keyup="isTyping()"
             >
             <button
                 class="send"

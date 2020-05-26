@@ -4,7 +4,7 @@ var socket = require('socket.io');
 // App setup
 var app = express();
 var server = app.listen(4000, function() {
-    console.log('Listening...');
+    console.log('Listening on port 4000');
 });
 
 // Static file
@@ -19,5 +19,9 @@ io.on('connection', function(socket) {
     socket.on('chat', function(data) {
         // Emit data to client
         io.sockets.emit('chat', data);
-    })
+    });
+
+    socket.on('typing', function(data) {
+        socket.broadcast.emit('typing', data);
+    });
 });

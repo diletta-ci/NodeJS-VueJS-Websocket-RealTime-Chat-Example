@@ -7,7 +7,8 @@ var app = new Vue({
         chatOutput: '',
         handle: '',
         message: '',
-        allMessages: []
+        allMessages: [],
+        feedback: '',
     },
     created() {
         socket.connect('http://localhost:4000');
@@ -18,6 +19,10 @@ var app = new Vue({
                 message: data.message
             });
         });
+
+        socket.on('typing', (data) => {
+            this.feedback = `${data} is typing...`;
+        })
     },
     methods: {
         sendMessage() {
@@ -25,6 +30,10 @@ var app = new Vue({
                 message: this.message,
                 handle: this.handle
             });
-        }
+            this.message = '';
+        },
+        isTyping() {
+            socket.emit('typing', this.handle);
+        },
     }
 });
