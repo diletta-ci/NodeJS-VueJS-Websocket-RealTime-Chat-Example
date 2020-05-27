@@ -10,10 +10,17 @@ var app = new Vue({
         allMessages: [],
         feedback: '',
     },
+    watch: {
+        message(value) {
+            value ? socket.emit('typing', this.handle) : socket.emit('stopTyping');
+        },
+    },
     created() {
         socket.connect('http://localhost:4000');
 
         socket.on('chat', (data) => {
+            this.message = '';
+
             this.allMessages.push({
                 handle: data.handle,
                 message: data.message
@@ -22,7 +29,11 @@ var app = new Vue({
 
         socket.on('typing', (data) => {
             this.feedback = `${data} is typing...`;
-        })
+        });
+
+        socket.on('stopTyping', () => {
+            this.feedback = '';
+        });
     },
     methods: {
         sendMessage() {
@@ -30,10 +41,6 @@ var app = new Vue({
                 message: this.message,
                 handle: this.handle
             });
-            this.message = '';
-        },
-        isTyping() {
-            socket.emit('typing', this.handle);
         },
     }
 });

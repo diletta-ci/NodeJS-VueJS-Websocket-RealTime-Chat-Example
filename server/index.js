@@ -21,7 +21,12 @@ io.on('connection', function(socket) {
         io.sockets.emit('chat', data);
     });
 
+    // Broadcast event to show feedback tp other users connected
     socket.on('typing', function(data) {
         socket.broadcast.emit('typing', data);
+    });
+
+    socket.on('stopTyping', function() {
+        socket.broadcast.emit('stopTyping');
     });
 });
