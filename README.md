@@ -1,6 +1,8 @@
 # NodeJS VueJS Websocket RealTime Chat Example
 
-> Real time chat example
+> Real time chat
+
+![app screenshot](server/public/assets/real-time-chat-screenshot.png)
 
 ## Purpose of Project
 
